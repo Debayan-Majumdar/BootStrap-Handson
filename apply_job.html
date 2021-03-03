@@ -1,0 +1,255 @@
+<!--2.2. Apply for Jobs form (apply_job.html):
+
+page title: Apply for Jobs
+
+fields:
+
+
+- applicants: appl_id, first_name, last_name, email, phone_num, address, city, state, zip, country_cd (fk1),
+              appl_status_cd (fk2), edu_level_cd (fk3), edu_type_cd (fk4), resume_file_name, 
+              cover_letter_text, date_applied, employed_flag, current_employer_name, years_of_exp..
+ 
+   first name: text field*
+   last name: text field*
+   email: text field*
+   phone: text field*
+   address: text field* 
+   city: text field*
+   state: text field*
+   zip: text field*  - integer
+   country: drop down (select)*
+
+from Sivaram Prasad to everyone:    2:27 PM
+ education level: drop down (select)*
+   education type:  drop down (select)*   
+   resume:  file upload type * 
+   cover letter: text area (optional)
+   are you employed?: checkbox
+   if employed (show only when the above checkbox is checked),
+      current employer: text field
+      years of experience: numeric 
+   jobs you want to apply: multi-select (open jobs list)
+     
+   [submit] button
+
+* = required fields
+   javascript validations: 
+     validate that required fields are not blank when submit is clicked
+     validate that numberic values are valid
+     if possible add validations for phone number and email
+
+Note: Use CSS stylesheet file to define classes for various texts (headers, field names, hints..) and input fields-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form action="" method="POST" id="fid">
+            <table>
+                <tr>
+                    <td>
+                        <label for="fname">First Name <sup>*</sup></label>
+                    </td>
+                    <td>
+                        <input type="text" id="fname" name="fname" pattern="[A-Za-z\s]{3,25}" placeholder="Enter Your First Name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="lname">Last Name <sup>*</sup></label>
+                    </td>
+                    <td>
+                        <input type="text" id="lname" name="lname" pattern="[A-Za-z\s]{2,25}" placeholder="Enter Your Last Name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email <sup>*</sup></label>
+                    </td>
+                    <td>
+                        <input type="email" id="email" name="email" placeholder="Enter Youe Email ID">
+    
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="phone">Phone<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <input type="text" id="phone" name="phone" pattern="[7-9]{1}[0-9]{9}" placeholder="Enter Your 10digit Phone Number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="address">Address<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <input type="text" id="address" name="address" pattern="[A-Za-z0-9\s]{3,35}" placeholder="Enter Your Address">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="city">City<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <input type="text" id="city" name="city" pattern="[A-Za-z\s]{3,26}" placeholder="Enter The City">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="state">State<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <input type="text" id="state" name="state" pattern="[A-Za-z\s]{3,26}" placeholder="Enter The State">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="zip">Zip<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <input type="number" id="zip" name="zip" placeholder="Enter The ZIP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="country">Country<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <select id="country" name="country" size="1">
+                                <option value="select">Select</option>
+                                <option value="Afganistan">Afganistan</option>
+                                <option value="Albania">Albania</option>
+                                <option value="Algeria">Algeria</option>
+                                <option value="ar">Argentina</option>
+                                <option value="ar">Argentina</option>
+                                <option value="au">Australia</option>
+                                <option value="bhu">Bhutan</option>
+                                <option value="braz">Brazil</option>
+                                <option value="can">Canada</option>
+                                <option value="chi">Chile</option>
+                                <option value="chin">China</option>
+                                <option value="den">Denmark</option>
+                                <option value="eg">Egypt</option>
+                                <option value="fin">Finland</option>
+                                <option value="fran">France</option>
+                                <option value="ger">Germany</option>
+                                <option value="gree">Greece</option>
+                                <option value="hong">Hong-Kong</option>
+                                <option value="Ind">India</option>
+                                <option value="Ita">Italy</option>
+                                <option value="Ir">Ireland</option>
+                                <option value="ja">Japan</option>
+                                <option value="us">USA</option>
+                                <option value="uk">UK</option>
+                                <option value="ua">UAE</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="edu_level">Education Level<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <select id="edu_level" name="edu_level" size="1" required>
+                            <option value="select">Select</option>
+                            <option value="8Th">8Th</option>
+                            <option value="10Th">10Th</option>
+                            <option value="12Th">12Th</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Graduation">Graduation</option>
+                            <option value="Masters">Masters</option>
+                            <option value="Doctorate">Doctorate</option>
+    
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="edu_type">Education Type<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <select id="edu_type" name="edu_type" size="1">
+                            <option value="select">Select</option>
+                            <option value="Full-Time">Full-Time</option>
+                            <option value="Part-Time">Part-Time</option>
+                            <option value="Distance">Distance</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="resume">Resume</label>
+                    </td>
+                    <td>
+                        <input type="file" id="resume" name="resume">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cover">Cover Letter</label>
+                    </td>
+                    <td>
+                        <textarea name="cover" id="cover" cols="30" rows="10"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cbox">If Employed Check the box</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="box1" id="cbox" onclick="myFunction()">
+                    </td>
+                </tr>
+                
+<!--hidden section Start-->
+
+                <tr>
+                    <td>
+                        <label for="current_emp" style="display: none;" id="h1">Current Employer</label>
+                    </td>
+                    <td>
+                        <input type="text" id="current_emp" name="current_emp" style="display: none;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="emp_yoe" style="display: none;" id="h2">Year of Experience</label>
+                    </td>
+                    <td>
+                        <input type="number" id="emp_yoe" name="emp_yoe" style="display: none;">
+                    </td>
+                </tr>
+<!--hidden section End-->
+                <tr>
+                    <td>
+                        <label for="apply_job">Jobs for apply<sup>*</sup></label>
+                    </td>
+                    <td>
+                        <select id="apply_job" name="apply_job" size="4" multiple>
+                            <option value="select">Select</option>
+                            <option value="ET">Engineer Trainee</option>
+                            <option value="PAT">Programer Analyst Trainee</option>
+                            <option value="PT">Programer Trainee</option>
+                            <option value="PA">Programer Analyst</option>
+                            <option value="A">Associate</option>
+                            <option value="SA">Senior Associate</option>
+                            <option value="M">Manager</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script src="apply_job.js"></script>
+</body>
+</html>
