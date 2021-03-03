@@ -1,0 +1,195 @@
+<!--2.1. Job openings form (create_job.html):
+page title: Enter Job Data
+
+fields:
+ 
+   title: text field*
+   type: drop down (select)*
+   department: drop down (select)*  
+   country: drop down (select)*
+   description: text area*
+   opening date: date field (fill with current date)*
+
+   [submit] button
+
+* = required fields
+   javascript validations: 
+     validate that required fields are not blank when submit is clicked
+     validate that date value is valid and not greater than current date
+
+     
+     
+     */-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Job Data</title>
+</head>
+<body class="container">
+    <div>
+        <form id="fid" onsubmit="return validateForm()" method="post" action=""> 
+            <table>
+                <tr>
+                    <td>
+                        <label for="job_title">Title <sup style="color: red;">*</sup></label>
+                    </td>
+                    <td>
+                        <input type="text" id="job_title" name="job_title" placeholder="Enter Job Title Here" pattern="[A-Za-z\s]{3,25}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="job_type">Type <sup style="color: red;">*</sup></label>
+                    </td>
+                    <td>
+                        <select id="job_type" name="job_type" size="1" required>
+                            <option value="select">Select</option>
+                            <option value="parmanent">Parmanent</option>
+                            <option value="intern">Intern</option>
+                            <option value="contract">Contractual</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="job_deg">Designation<sup style="color: red;">*</sup></label>
+                    </td>
+                    <td>
+                        <select id="job_deg" name="job_deg" size="1" required>
+                            <option value="select">Select</option>
+                            <option value="ET">Engineer Trainee</option>
+                            <option value="PAT">Programer Analyst Trainee</option>
+                            <option value="PT">Programer Trainee</option>
+                            <option value="PA">Programer Analyst</option>
+                            <option value="A">Associate</option>
+                            <option value="SA">Senior Associate</option>
+                            <option value="M">Manager</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="job_dep">Department<sup style="color: red;">*</sup></label>
+                    </td>
+                    <td>
+                        <select id="job_dep" name="job_dep" size="1" required>
+                            <option value="select">Select</option>
+                            <option value="prod">Production</option>
+                           <option value="rd">Research & Development</option>
+                           <option value="pur">Purchasing</option>
+                          <option value="market">Marketing</option>
+                          <option value="hrm">Human Resource Management</option>
+                          <option value="af">Accounting & Finance</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="country">Country<sup style="color: red;">*</sup></label>
+                    </td>
+                    <td>
+                        <select id="country" name="country" size="1" required>
+                            <option value="select">Select</option>
+                            <option value="Afganistan">Afganistan</option>
+                            <option value="Albania">Albania</option>
+                            <option value="Algeria">Algeria</option>
+                            <option value="ar">Argentina</option>
+                            <option value="ar">Argentina</option>
+                            <option value="au">Australia</option>
+                            <option value="bhu">Bhutan</option>
+                            <option value="braz">Brazil</option>
+                            <option value="can">Canada</option>
+                            <option value="chi">Chile</option>
+                            <option value="chin">China</option>
+                            <option value="den">Denmark</option>
+                            <option value="eg">Egypt</option>
+                            <option value="fin">Finland</option>
+                            <option value="fran">France</option>
+                            <option value="ger">Germany</option>
+                            <option value="gree">Greece</option>
+                            <option value="hong">Hong-Kong</option>
+                            <option value="Ind">India</option>
+                            <option value="Ita">Italy</option>
+                            <option value="Ir">Ireland</option>
+                            <option value="ja">Japan</option>
+                            <option value="us">USA</option>
+                            <option value="uk">UK</option>
+                            <option value="ua">UAE</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="description">Description <sup style="color: red;">*</sup></label>
+                    </td>
+                    <td>
+                        <textarea name="description" id="description" cols="30" rows="10" placeholder="Enter Job Description Here"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="od">Opening Date<sup style="color: red;">*</sup></label>
+                    </td>
+                    <td>
+                        <input type="date" id="od" name="enterdate" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="submit" type="submit">submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+         function validateForm() {
+            var ui=document.getElementById("job_title");
+            var description=document.getElementById("description");
+            var today=new Date();
+            var EnteredDate=document.getElementById("od").value;
+            EnteredDate=new Date(EnteredDate);
+
+
+
+                if(ui.value==="")
+                {
+                    alert("Job title is required!!!");
+                    return false;
+                }
+                if(document.getElementById("job_type").selectedIndex===0)
+                {
+                    alert('Job type is required!!!');
+                    return false;
+                }
+                if(document.getElementById("job_deg").selectedIndex===0)
+                {
+                    alert('Select the Designation....');
+                    return false;
+                }
+                if(document.getElementById("job_dep").selectedIndex===0)
+                {
+                    alert('Select the Department....');
+                    return false;
+                }
+                if(document.getElementById("country").selectedIndex===0)
+                {
+                    alert('Select the Country....');
+                    return false;
+                }
+                if(description.value==="")
+                {
+                    alert("Description is required!!!");
+                    return false;
+                }
+                if(EnteredDate > today)
+                {
+                    alert("Enter wrong date!!!");
+                    return false;
+                } 
+        }
+    </script>
+</body>
+</html>
